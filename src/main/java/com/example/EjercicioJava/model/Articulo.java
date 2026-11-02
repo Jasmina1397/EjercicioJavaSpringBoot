@@ -1,9 +1,19 @@
 package com.example.EjercicioJava.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+
+/**
+ * Representa un artículo disponible en el supermercado.
+ *
+ * Cada artículo almacena su identificador, nombre, categoría,
+ * precio y cantidad disponible en el inventario.
+ */
+
+@Entity
 public class Articulo {
 
 

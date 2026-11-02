@@ -4,7 +4,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.GenerationType;
 
-public class Sucusal {
+
+/**
+ * Representa una sucursal del supermercado.
+ *
+ * Cada sucursal almacena su identificador, nombre y dirección.
+ * Esta clase se utiliza como entidad para gestionar las sucursales
+ * mediante Java Persistence API (JPA).
+ *
+ */
+
+@Entity
+public class Sucursal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,10 +23,10 @@ public class Sucusal {
     private String nombre;
     private String direccion;
 
-    public Sucusal() {
+    public Sucursal() {
     }
 
-    public Sucusal(Long idSucursal, String nombre, String direccion) {
+    public Sucursal(Long idSucursal, String nombre, String direccion) {
         this.idSucursal = idSucursal;
         this.nombre = nombre;
         this.direccion = direccion;
