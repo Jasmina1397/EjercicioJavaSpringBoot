@@ -1,6 +1,8 @@
 package com.example.EjercicioJava.model;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,24 +20,32 @@ public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVenta;
-
     private LocalDate fecha;
     private String estado;
+    private double total;
 
-
-    /** Sucursal a la que pertenece la venta. */
+    // Sucursal a la que pertenece la venta
     @ManyToOne
     private Sucursal sucursal;
 
+    /**
+     * Lista de detalles asociados a esta venta.
+     * Una venta puede contener varios detalles, cada uno de ellos
+     * correspondiente a un artículo incluido en la venta.
+     */
+    @OneToMany(mappedBy = "venta")
+    private List<DetalleVenta> detalle = new ArrayList<>();
 
     public Venta() {
     }
 
-    public Venta(Long idVenta, LocalDate fecha, String estado, Sucursal sucursal) {
+    public Venta(Long idVenta, LocalDate fecha, String estado, double total, Sucursal sucursal, List<DetalleVenta> detalle) {
         this.idVenta = idVenta;
         this.fecha = fecha;
         this.estado = estado;
+        this.total = total;
         this.sucursal = sucursal;
+        this.detalle = detalle;
     }
 
     public Long getIdVenta() {
@@ -62,8 +72,12 @@ public class Venta {
         this.estado = estado;
     }
 
-    public Venta(Sucursal sucursal) {
-        this.sucursal = sucursal;
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public Sucursal getSucursal() {
@@ -72,5 +86,13 @@ public class Venta {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public List<DetalleVenta> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<DetalleVenta> detalle) {
+        this.detalle = detalle;
     }
 }

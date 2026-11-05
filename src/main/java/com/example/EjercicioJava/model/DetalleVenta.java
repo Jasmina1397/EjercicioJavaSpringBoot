@@ -19,22 +19,24 @@ public class DetalleVenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  int cantidad;
-    private  Double precio;
 
-
+    /** Venta a la que pertenece este detalle. */
     @ManyToOne
     private Venta venta;
 
+    /** Artículo incluido en este detalle de venta. */
     @ManyToOne
     private Articulo articulo;
+    private  int cantArt;
+    private  Double precio;
+
 
     public DetalleVenta() {;
     }
 
-    public DetalleVenta(Long id, int cantidad, Double precio, Venta venta, Articulo articulo) {
+    public DetalleVenta(Long id, int cantArt, Double precio, Venta venta, Articulo articulo) {
         this.id = id;
-        this.cantidad = cantidad;
+        this.cantArt = cantArt;
         this.precio = precio;
         this.venta = venta;
         this.articulo = articulo;
@@ -48,12 +50,12 @@ public class DetalleVenta {
         this.id = id;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getCantArt() {
+        return cantArt;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setCantArt(int cantidad) {
+        this.cantArt = cantidad;
     }
 
     public Double getPrecio() {
